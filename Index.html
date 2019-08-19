@@ -1,0 +1,320 @@
+<html lang="en">
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="mystyle.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+<!-- Creating a dropdown button-->
+
+
+
+
+<!-- <title> Add New Purchase </title>
+
+<select id= "Brand">
+<option value =''></option>
+</select>
+
+<select id= "Style">
+<option value =''></option>
+</select>
+
+<select id= "Color">
+<option value =''></option>
+</select>
+
+<select id= "Date">
+<option value =''></option>
+</select>
+
+<select id= "Price">
+<option value =''></option>
+</select>
+<!-- 
+ <!--importing the json file-->
+ <!-- <script src ="my_sneakers.json"></script>
+ <script src ="custom.js"></script> -->  
+
+
+<!-- creating a search button -->
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#tablesearch tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+
+<!--End of a search button -->
+
+<header><h1>CO's SNEAKERS</h1></header>
+</head>
+
+<br>
+<br>
+
+<!-- Adding a new purchase -->
+
+<h2>Add New Purchase</h2>
+
+<!-- Dropdown for new selection -->
+
+<style>
+/* Style The Dropdown Button */
+.dropbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
+</style>
+
+<!-- Brand dropdown-->
+<div class="dropdown">
+  <button class="dropbtn"> Brand </button>
+  <br>
+  <div class="dropdown-content">
+    <a href="#">Brand1</a>
+    <a href="#">Brand2</a>
+    <a href="#">Brand3</a>
+    <a href="#">Brand4</a>
+  </div>
+</div>
+
+<!-- Style and dropdown-->
+
+<div class="dropdown">
+  <button class="dropbtn"> Style </button>
+  <br>
+  <div class="dropdown-content">
+    <a href="#">Style1</a>
+    <a href="#">Style2</a>
+    <a href="#">Style3</a>
+    <a href="#">Style4</a>
+  </div>
+</div>
+
+<!-- Color dropdown-->
+
+<div class="dropdown">
+  <button class="dropbtn"> Color </button>
+  <br>
+  <div class="dropdown-content">
+    <a href="#">Color1</a>
+    <a href="#">Color2</a>
+    <a href="#">Color3</a>
+    <a href="#">Color4</a>
+  </div>
+</div>
+
+
+<style>
+#collection {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 80%;
+}
+
+#collection td, #collection th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#collection tr:nth-child(even){background-color: #f2f2f2;}
+
+#collection tr:hover {background-color: #ddd;}
+
+#collection th {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: left;
+  background-color: #FF6600;
+  color: white;
+}
+</style>
+</head>
+<body>
+
+<!-- Creating a table sorting function -->
+
+<table id="collection">
+<tr>
+<!--When a header is clicked, run the sortTable function, with a parameter,
+0 for sorting by brand, 1 for sorting by style and so forth-->
+<th onclick="sortTable(0)">Brand</th>
+<th onclick="sortTable(1)">Style</th>
+<th onclick="sortTable(2)">Color</th>
+<th onclick="sortTable(3)">Date</th>
+<th onclick="sortTable(4)">Price</th>
+</tr>
+        
+
+<script>
+function sortTable(n) {
+  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+  table = document.getElementById("collection");
+  switching = true;
+  // Set the sorting direction to ascending:
+  dir = "asc"; 
+  /* Make a loop that will continue until
+  no switching has been done: */
+  while (switching) {
+    // Start by saying: no switching is done:
+    switching = false;
+    rows = table.rows;
+    /* Loop through all table rows (except the
+    first, which contains table headers): */
+    for (i = 1; i < (rows.length - 1); i++) {
+      // Start by saying there should be no switching:
+      shouldSwitch = false;
+      /* Get the two elements you want to compare,
+      one from current row and one from the next: */
+      x = rows[i].getElementsByTagName("TD")[n];
+      y = rows[i + 1].getElementsByTagName("TD")[n];
+      /* Check if the two rows should switch place,
+      based on the direction, asc or desc: */
+      if (dir == "asc") {
+        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+          // If so, mark as a switch and break the loop:
+          shouldSwitch = true;
+          break;
+        }
+      } else if (dir == "desc") {
+        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+          // If so, mark as a switch and break the loop:
+          shouldSwitch = true;
+          break;
+        }
+      }
+    }
+    if (shouldSwitch) {
+      /* If a switch has been marked, make the switch
+      and mark that a switch has been done: */
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+      // Each time a switch is done, increase this count by 1:
+      switchcount ++; 
+    } else {
+      /* If no switching has been done AND the direction is "asc",
+      set the direction to "desc" and run the while loop again. */
+      if (switchcount == 0 && dir == "asc") {
+        dir = "desc";
+        switching = true;
+      }
+    }
+  }
+}
+</script>
+
+<!--End of the sort function -->
+
+
+<h2>Co's Sneaker Collection </h2>
+<br>
+
+
+<input id="myInput" type="text" placeholder="Search...">
+<br><br>
+
+<table id="collection">
+   <thead> <tr>
+           <!--   <th>Brand</th>
+             <th>Style</th>
+             <th>Color</th>
+             <th>Date</th>
+             <th>Price</th> -->
+             </tr>
+
+    </thead>
+    <tbody id="tablesearch">
+    </tbody>
+ </table>
+   </div>
+  </div>
+</div>
+
+<!-- Plugging the "my_sneaker.json" file data-->
+<script>
+$(document).ready(function(params) {
+    $.getJSON("my_sneakers.json", function(data){
+        var brand_data ='';
+        $.each(data,function(key,value){
+            brand_data +='<tr>';
+            brand_data +='<td>'+value.Brand+ '</td>';
+            brand_data +='<td>'+value.Style+ '</td>';
+            brand_data +='<td>'+value.Color+ '</td>';
+            brand_data +='<td>'+value.Date+ '</td>';
+            brand_data +='<td>'+value.Price+ '</td>';
+            brand_data +='</tr>';
+        });
+        $('#collection').append(brand_data);
+    });
+    
+});
+</script>
+
+<!-- End of the plug -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
